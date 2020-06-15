@@ -21,7 +21,7 @@ public class Main {
         XDesktop   xDesktop = getxDesktop(xContext);
 
         String pathFolder = "/Users/{user_name}/Documents/";//directory to the file you wanted to convert
-        String fileToCovert = "convertMe.odt";//file you wanted to convert
+        String fileToCovert = "sample.odt";//file you wanted to convert
 
         if (!new File(pathFolder + fileToCovert).canRead()) {
             throw new RuntimeException("Cannot load template:" + new File(pathFolder + fileToCovert));
@@ -40,11 +40,6 @@ public class Main {
         XStorable xStorable = UnoRuntime .queryInterface(XStorable.class, loadFileFromURL);
         propertyValues = new PropertyValue[3];
 
-        // Overwriting
-        propertyValues[0] = new PropertyValue();
-        propertyValues[0].Name = "Overwrite";
-        propertyValues[0].Value = Boolean.TRUE;
-
         // export odt to pdf
         propertyValues[0] = new PropertyValue();
         propertyValues[0].Name = "FilterName";
@@ -61,7 +56,7 @@ public class Main {
 
 
         // the url where the pdf is to be saved
-        String outputFile = pathFolder + "sample0.pdf";
+        String outputFile = pathFolder + "convertMe.pdf";
 
         xStorable.storeToURL("file:///" + outputFile, propertyValues);
 
@@ -91,7 +86,6 @@ public class Main {
         // connection string
         String unoConnectString = "uno:socket,"+hostAndPort+";urp;StarOffice.ComponentContext";
 
-        // Directory to your office
         String libreOfficeFilePath = "/Users/{user_name}/Applications/LibreOffice.app/Contents/MacOS/soffice";
         BootstrapConnector bootstrapConnector = new BootstrapConnector(libreOfficeFilePath);
 
@@ -102,6 +96,5 @@ public class Main {
         }
         return xContext;
     }
-
 
 }
