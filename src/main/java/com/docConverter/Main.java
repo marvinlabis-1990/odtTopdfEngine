@@ -91,7 +91,8 @@ public class Main {
         // connection string
         String unoConnectString = "uno:socket,"+hostAndPort+";urp;StarOffice.ComponentContext";
 
-        String libreOfficeFilePath = "/Users/kevinaton/Desktop/LibreOffice.app/Contents/MacOS/soffice";
+        // Directory to your office
+        String libreOfficeFilePath = "/Users/{user_name}/Applications/LibreOffice.app/Contents/MacOS/soffice";
         BootstrapConnector bootstrapConnector = new BootstrapConnector(libreOfficeFilePath);
 
         XComponentContext  xContext = bootstrapConnector.connect(oooAcceptOption, unoConnectString);
